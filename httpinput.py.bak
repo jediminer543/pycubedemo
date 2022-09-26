@@ -1,15 +1,15 @@
 # Copyright (C) John Leach <john@johnleach.co.uk>
 # Released under the terms of the GNU General Public License version 3
 
-import http.server
+import BaseHTTPServer
 import cgi
-import _thread
+import thread
 import collections
 import itertools
 
 PageInfo = collections.namedtuple('PageInfo', ['title', 'buttons', 'callback'])
 
-class RequestHandler(http.server.BaseHTTPRequestHandler):
+class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
     def do_GET(self):
         self.send_response(200)
@@ -30,7 +30,7 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
                 bstr += "<button type='submit' name='%s'>%s</button>" % (name, name)
                 bstyle += "button[name=%s] { width: %d%% ; %s } " % (name, int(95 / (len(r) - 0.05)), style)
             bstr += '</p>'
-        self.wfile.write(("""<html>
+        self.wfile.write("""<html>
     <head>
       <title>%(title)s</title>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -62,7 +62,7 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
         </script>
     </body>
 </html>
-        """ % {'title':info.title, 'bstyle':bstyle, 'bstr':bstr}).encode())
+        """ % {'title':info.title, 'bstyle':bstyle, 'bstr':bstr})
 
     def do_POST(self):
         try:
@@ -73,7 +73,7 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
 
 def StartHTTP(port, title, buttons, callback):
-    srv = http.server.HTTPServer(("0.0.0.0", port), RequestHandler)
+    srv = BaseHTTPServer.HTTPServer(("0.0.0.0", port), RequestHandler)
     srv.page_info = PageInfo(title, buttons, callback)
-    srv = _thread.start_new_thread(srv.serve_forever, ())
+    srv = thread.start_new_thread(srv.serve_forever, ())
     return srv

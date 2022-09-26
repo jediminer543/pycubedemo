@@ -42,6 +42,7 @@ def load_patterns(cube, match):
             pobj = constructor()
             pobj.name = name
             pobj.cube = cube
+            pobj.port = arglist.get("netport")
             pobj.arg = arglist.get(name)
             patterns[name] = pobj
     if len(patterns) == 0:
@@ -123,7 +124,9 @@ ap.add_argument('-i', '--interval', type=float,
 ap.add_argument('-f', '--frames', action='store_true', default=False,
         help="Display framerate")
 ap.add_argument('-n', '--noloop', action='store_true', default=False,
-	help="Run selected pattern(s) only once, don't loop through them")
+        help="Run selected pattern(s) only once, don't loop through them")
+ap.add_argument('-N', '--netport', type=str,
+        help="Network port for patterns")
 args = ap.parse_args()
 
 debug_frames = args.frames
@@ -152,8 +155,9 @@ if args.interval is None:
 try:
     #c.set_brightness((8, 4, 4))
     #c.set_brightness((0xc0, 0xff, 0xff))
-    c.set_brightness((0x30, 0x45, 0x40))
+    #c.set_brightness((0x30, 0x45, 0x40))
     #c.set_brightness((0x10, 0x08, 0x08))
+    pass
 except:
     pass
 
