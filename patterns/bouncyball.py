@@ -7,53 +7,18 @@ import cubehelper
 import math
 import random
 
-# range is inclusive
-def in_range(x, a, b):
-    return (x >= a) and (x <= b)
+ANTIALIAS_DIST = 0.2
 
 class Pattern(object):
     def init(self):
         self.double_buffer = True
-        # Vertices:
-        # bottom layer
-        # 2--6
-        # |  |
-        # 0--4
-        #
-        # top layer
-        # 3--7
-        # |  |
-        # 1--5
-
-        # cs = self.cube.size-1
-
-        # self.corners = [
-        #     (0, 0, 0),     # 0
-        #     (0, 0, cs),    # 1
-        #     (0, cs, 0),    # 2
-        #     (0, cs, cs),   # 3
-        #     (cs, 0, 0),    # 4
-        #     (cs, 0, cs),   # 5
-        #     (cs, cs, 0),   # 6
-        #     (cs, cs, cs),  # 7
-        # ]
-
-        # self.filling_color = 0
-        # self.corner_index = None
-        # self.restart()
         self.box = self.boxGen()
-        self.currRadius = 3
+        self.currRadius = 2
+        self.ball_x = 0
+        self.ball_y = 3
+        self.ball_z = 3
         self.tick()
         return 0.6 / self.cube.size
-
-    # def restart(self):
-    #     self.offset = 0
-    #     new_corner_index = self.corner_index
-    #     while self.corner_index == new_corner_index:
-    #         new_corner_index = random.randrange(0, 8)
-    #     self.corner_index = new_corner_index
-    #     self.corner = self.corners[self.corner_index]
-    #     self.filling_color = cubehelper.random_color(self.filling_color)
 
     def boxGen(self):
         while True:
@@ -82,9 +47,9 @@ class Pattern(object):
         mx = self.cube.size
 
         rad = math.ceil(radius)
-        for x in range(clamp(centre[0]-rad, 0, mx), clamp(centre[0]+rad+1, 0, mx)):
-            for y in range(clamp(centre[1]-rad, 0, mx), clamp(centre[1]+rad+1, 0, mx)):
-                for z in range(clamp(centre[2]-rad, 0, mx), clamp(centre[2]+rad+1, 0, mx)):
+        for x in range(clamp(math.floor(centre[0])-rad, 0, mx), clamp(math.ceil(centre[0])+rad+1, 0, mx)):
+            for y in range(clamp(math.floor(centre[1])-rad, 0, mx), clamp(math.ceil(centre[1])+rad+1, 0, mx)):
+                for z in range(clamp(math.floor(centre[2])-rad, 0, mx), clamp(math.ceil(centre[2])+rad+1, 0, mx)):
                     yield (x, y, z)
 
     def drawSphere(self, centre, r):
@@ -92,7 +57,11 @@ class Pattern(object):
         for coord in self.boundingCube(centre, r):
             di = self.distance3d(centre, coord)
             if di <= r:
-                self.cube.set_pixel(coord, (1.0, 0.0, 0.0))
+                self.cube.set_pixel(coord, (1.0, 1.0, 1.0))
+            elif di <= r+ANTIALIAS_DIST:
+                # antialias
+                how_bright = 1.0 - (di - r)/ANTIALIAS_DIST
+                self.cube.set_pixel(coord, (how_bright, how_bright, how_bright))
 
     def tick(self):
         self.cube.clear()
@@ -102,27 +71,12 @@ class Pattern(object):
         # for coord in cubehelper.line((0, 0, 0), (pix[0], pix[1], 7)):
         #     self.cube.set_pixel(coord, (1.0, 1.0, 1.0))
 
-        # self.currRadius += 0.2
-        self.drawSphere((3, 3, 3), self.currRadius)
+        self.ball_x += 0.15
+        self.ball_y += 0.05
+        self.drawSphere((self.ball_x, self.ball_y, self.ball_z), self.currRadius)
 
-        # pos = self.corner
-        # outer = self.offset
-        # inner = self.offset - 4
+        if (self.ball_x >= 10):
+            self.ball_x = -3
 
-        # for y in range(self.cube.size):
-        #     dy = abs(y - pos[1])
-        #     for x in range(self.cube.size):
-        #         dx = abs(x - pos[0])
-        #         for z in range(self.cube.size):
-        #             dz = abs(z - pos[2])
-        #             if max(dx, dy, dz) >= inner and max(dx, dy, dz) <= outer:
-        #                 color = self.filling_color
-        #             else:
-        #                 color = 0
-        #             self.cube.set_pixel((x, y, z), color)
-
-        # if inner == self.cube.size:
-        #     self.restart()
-        #     raise StopIteration
-        # else:
-        #     self.offset += 1
+        if (self.ball_y >= 10):
+            self.ball_y = -3
