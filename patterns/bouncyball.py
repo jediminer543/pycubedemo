@@ -13,12 +13,14 @@ class Pattern(object):
     def init(self):
         self.double_buffer = True
         self.box = self.boxGen()
-        self.currRadius = 2
+        self.currRadius = 1.5
         self.ball_x = 0
         self.ball_y = 3
         self.ball_z = 3
+        self.interval = 0.4 / self.cube.size
+        self.elapsed = 0
         self.tick()
-        return 0.6 / self.cube.size
+        return self.interval
 
     def boxGen(self):
         while True:
@@ -52,31 +54,30 @@ class Pattern(object):
                 for z in range(clamp(math.floor(centre[2])-rad, 0, mx), clamp(math.ceil(centre[2])+rad+1, 0, mx)):
                     yield (x, y, z)
 
-    def drawSphere(self, centre, r):
+    def drawSphere(self, centre, r, color):
         """Draw a sphere centered around a point"""
         for coord in self.boundingCube(centre, r):
             di = self.distance3d(centre, coord)
             if di <= r:
-                self.cube.set_pixel(coord, (1.0, 1.0, 1.0))
+                self.cube.set_pixel(coord, color)
             elif di <= r+ANTIALIAS_DIST:
                 # antialias
                 how_bright = 1.0 - (di - r)/ANTIALIAS_DIST
-                self.cube.set_pixel(coord, (how_bright, how_bright, how_bright))
+                self.cube.set_pixel(coord, (color[0]*how_bright, color[1]*how_bright, color[2]*how_bright))
 
     def tick(self):
         self.cube.clear()
 
-        # pix = next(self.box)
-        # print(pix)
-        # for coord in cubehelper.line((0, 0, 0), (pix[0], pix[1], 7)):
-        #     self.cube.set_pixel(coord, (1.0, 1.0, 1.0))
+        self.ball_x = 3.5 + math.sin(self.elapsed*3)*2.5
+        self.ball_y = 3.5 + math.cos(self.elapsed*3)*2.5
+        self.ball_z = 3.5 + math.sin(self.elapsed*5.2)
 
-        self.ball_x += 0.15
-        self.ball_y += 0.05
-        self.drawSphere((self.ball_x, self.ball_y, self.ball_z), self.currRadius)
+        self.drawSphere((self.ball_x, self.ball_y, self.ball_z), self.currRadius, (1.0, 0.0, 0.0))
 
         if (self.ball_x >= 10):
             self.ball_x = -3
 
         if (self.ball_y >= 10):
             self.ball_y = -3
+
+        self.elapsed += self.interval
