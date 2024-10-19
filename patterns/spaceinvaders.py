@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 # Copyright (C) John Leach <john@johnleach.co.uk>
 # Released under the terms of the GNU General Public License version 3
 
@@ -16,7 +17,7 @@ class Actor(object):
         self.init()
 
     def set_colour(self, c=None):
-        if c is None:
+        if c == None:
             c = cubehelper.random_color()
         self.colour = c
 
@@ -56,7 +57,7 @@ class Actor(object):
         self.z = self.cube.size / 2
 
     def coords(self):
-        return (self.x, self.y, self.z)
+        return (int(self.x), int(self.y), int(self.z))
 
     def draw(self):
         self.cube.set_pixel(self.coords(), self.colour)
@@ -112,17 +113,17 @@ class Player(Actor):
         target = self.target
         if len(self.game.bullets) == 0:
             self.ignore = []
-        while len(self.ignore) > 0 and self.ignore[0].state is not 'alive':
+        while len(self.ignore) > 0 and self.ignore[0].state != 'alive':
             self.ignore.pop(0)
-        if (target is None) or (target.state is not 'alive'):
+        if (target == None) or (target.state != 'alive'):
             target = None
             for invader in self.game.invaders:
                 if invader in self.ignore:
                     continue
-                if invader.state is not 'alive':
+                if invader.state != 'alive':
                     continue
                 dist = abs(self.x - invader.x) + abs(self.y - invader.y)
-                if target is None:
+                if target == None:
                     target = invader
                     target_dist = dist
                     continue
@@ -131,7 +132,7 @@ class Player(Actor):
                     target_dist = dist
             self.target = target
 
-        if target is not None:
+        if target != None:
             if target.x > self.x:
                 self.move_right()
             elif target.x < self.x:
@@ -192,7 +193,7 @@ class Invader(Actor):
 
     def tick(self):
         self.ticker += 1
-        if self.state is 'alive':
+        if self.state == 'alive':
             if self.ticker % self.speed == self.speed-1:
                 self.move_z(-1)
             if self.z == 0:
@@ -203,14 +204,14 @@ class Invader(Actor):
                 self.game.landed.append(self)
                 self.game.invaders.append(Invader(self.game))
 
-        elif self.state is 'dying':
+        elif self.state == 'dying':
             self.opacity -= 0.1
             if self.opacity <= 0.0:
                 self.opacity = 0
                 self.state = 'dead'
-        elif self.state is 'dead':
+        elif self.state == 'dead':
             self.game.invaders.remove(self)
-        elif self.state is 'landed':
+        elif self.state == 'landed':
             self.opacity = 0.01 + (math.sin(self.ticker / 5.0) + 1.0) * (0.10 / 2.0)
 
     def draw(self):
@@ -218,7 +219,7 @@ class Invader(Actor):
         self.cube.set_pixel(self.coords(), c)
 
     def collides_with(self, other):
-        return (self.state is 'alive' or self.state is 'landed') and \
+        return (self.state == 'alive' or self.state == 'landed') and \
             self.coords() == other.coords()
 
 
@@ -272,9 +273,9 @@ class Game(object):
 class Pattern(object):
     def init(self):
         self.double_buffer = True
-        self.game = Game(self.cube, self.arg is None)
+        self.game = Game(self.cube, self.arg == None)
         buttons = [['forward'], ['left', 'fire#background-color: #ffcccc', 'right'],['back']]
-        if self.arg is not None:
+        if self.arg != None:
             port = int(self.arg)
             self.server = httpinput.StartHTTP(port, "LED Invaders", buttons, self.game.handle_action)
         return 0.1

@@ -80,6 +80,8 @@ class Cube(object):
                 proto = 'tcp'
             elif port[:8] == '/dev/tty':
                 proto = 'serial'
+            elif port[:3] == 'COM':
+                proto = 'serial'
             elif port[:8] == '/dev/spi':
                 proto = 'spi'
             elif port[0] == '@':

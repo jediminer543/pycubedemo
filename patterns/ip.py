@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 # Display IP addresses
 # Copyright (C) Paul Brook <paul@nowt.org>
 # Released under the terms of the GNU General Public License version 3

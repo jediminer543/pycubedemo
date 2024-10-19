@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Licence: MIT
+
 # These imports are recommended
 import cubehelper
 import math

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 # Colour alternate pixels in two colours
 # Copyright (C) Liz Lyon <@lizzipfish>
 # Released under the terms of the GNU General Public License version 3

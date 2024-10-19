@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 # Fill the cube with a solid colour, starting from random corners
 # Copyright (C) Alex Silcock <alex@alexsilcock.net>
 # Released under the terms of the GNU General Public License version 3

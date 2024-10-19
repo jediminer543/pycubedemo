@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 # Walk over sides of a cube
 # Copyright (C) Paul Brook <paul@nowt.org>
 # Released under the terms of the GNU General Public License version 3

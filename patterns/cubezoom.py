@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 # Zoom a wireframe cube in and out of the centre
 # Copyright (C) Alex Silcock <alex@alexsilcock.net>
 # Released under the terms of the GNU General Public License version 3

@@ -6,7 +6,7 @@ import random
 import cubehelper
 import math
 
-DT = 0.05
+DT = 0.1
 
 def color_from_val(val):
     if val < 85:

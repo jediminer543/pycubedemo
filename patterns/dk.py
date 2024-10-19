@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 # Navigate a pixel through the cube using Best First pathfinding
 # Copyright (C) Liz Lyon <@lizzipfish>
 # Released under the terms of the GNU General Public License version 3

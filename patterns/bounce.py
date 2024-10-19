@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 # Bounce a pixel accross the cube in all three directions
 # Copyright (C) Martyn Ranyard <martyn@ranyard.info>
 # Released under the terms of the GNU General Public License version 3
