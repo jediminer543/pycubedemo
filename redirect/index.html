@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <script>
+        function setHref() {
+            Array.from(document.getElementsByClassName("reletiveport")).forEach(i=>{
+                i.href = window.location.protocol + "//" + window.location.hostname + ":" + i.dataset.port + "/" + i.dataset.href
+            })
+        }
+    </script>
+</head>
+
+<body onload="setHref()">
+    <ul>
+        <li><a data-href="" data-port="47284" class="reletiveport">Dotfield</a>
+        <li><a data-href="" data-port="27680" class="reletiveport">Snake</a>
+    </ul>
+</body>
+
+</html>
