@@ -1,4 +1,6 @@
 numpy
 pygame
 PyOpenGL
-PyOpenGL-accelerate
+# PyOpenGL-accelerate
+flask
+pyserial
