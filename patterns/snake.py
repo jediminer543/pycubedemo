@@ -188,7 +188,7 @@ pygame.mixer.set_num_channels(24)
 
 ## self.sample_plays = 0.0 # number of sample plays available
 SOUNDDIR="patterns/snake-data/"
-diesound = pygame.mixer.Sound(SOUNDDIR+"458620__adman1989__thenugentscream.mp3")
+diesound = pygame.mixer.Sound(SOUNDDIR+"Hero_Death_00.wav")
 eatsound = pygame.mixer.Sound(SOUNDDIR+"frog407.2.wav")
 music = pygame.mixer.Sound(SOUNDDIR+"maggie3.wav")
 
