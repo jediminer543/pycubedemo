@@ -31,7 +31,7 @@ class Pattern(object):
             else:
                 self.data = ()
             self.color = COLORS[c]
-        x = (self.cube.size - len(self.data)) / 2
+        x = (self.cube.size - len(self.data)) // 2
         y = self.position
         for mask in self.data:
             for z in range(0, 8):

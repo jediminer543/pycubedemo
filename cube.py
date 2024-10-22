@@ -135,6 +135,8 @@ ap.add_argument('-n', '--noloop', action='store_true', default=False,
         help="Run selected pattern(s) only once, don't loop through them")
 ap.add_argument('-N', '--netport', type=str,
         help="Network port for patterns")
+ap.add_argument('-r', '--rotation', type=str,
+        help="Rotation to apply to the cube in the format either just number of 90 degree rotations around z")
 args = ap.parse_args()
 
 debug_frames = args.frames
@@ -144,6 +146,21 @@ if args.port is None:
 else:
     import serialcube
     c = serialcube.Cube(args)
+
+if args.rotation is not None:
+    # EVIL PYTHON MAGIC
+    set_pixel_old = c.set_pixel
+    rotation_split = args.rotation.split(":")
+    assert(len(rotation_split)==1 or len(rotation_split)==3)
+    print("rot")
+    if (int(args.rotation[0]) % 4 == 0):
+        c.set_pixel = lambda xyz, rgb:  set_pixel_old((xyz[0], xyz[1], xyz[2]), rgb)
+    if (int(args.rotation[0]) % 4 == 1):
+        c.set_pixel = lambda xyz, rgb:  set_pixel_old((c.size-1-xyz[1], xyz[0], xyz[2]), rgb)
+    if (int(args.rotation[0]) % 4 == 2):
+        c.set_pixel = lambda xyz, rgb:  set_pixel_old((c.size-1-xyz[0], c.size-1-xyz[1], xyz[2]), rgb)
+    if (int(args.rotation[0]) % 4 == 3):
+        c.set_pixel = lambda xyz, rgb:  set_pixel_old((xyz[1], c.size-1-xyz[0], xyz[2]), rgb)
 
 if c.color:
     c.plasma = cubehelper.color_plasma
