@@ -176,10 +176,29 @@ class Server(WebSocket):
         except:
             pass
         
-server = SimpleWebSocketServer('', 27681, Server, selectInterval=1e-6)
+WEB_PORT = 27680
+WS_PORT = 27681
+SOUNDDIR="patterns/snake-data/"
+DIRECTORY = SOUNDDIR+"snakestatic/"
 
 
+server = SimpleWebSocketServer('', WS_PORT, Server, selectInterval=1e-6)
 
+# Janked in HTTP server
+import http.server, socketserver, threading
+
+class Handler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=DIRECTORY, **kwargs)
+
+def serve_static():
+    with socketserver.TCPServer(("", WEB_PORT), Handler) as httpd:
+        print("serving at port", WEB_PORT)
+        httpd.serve_forever()
+
+thread = threading.Thread(target = serve_static)
+thread.daemon = True
+thread.start()
 
 
 pygame.init()
@@ -187,7 +206,6 @@ pygame.mixer.init()
 pygame.mixer.set_num_channels(24)
 
 ## self.sample_plays = 0.0 # number of sample plays available
-SOUNDDIR="patterns/snake-data/"
 diesound = pygame.mixer.Sound(SOUNDDIR+"Hero_Death_00.wav")
 eatsound = pygame.mixer.Sound(SOUNDDIR+"frog407.2.wav")
 music = pygame.mixer.Sound(SOUNDDIR+"maggie3s.wav")
