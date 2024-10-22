@@ -190,7 +190,7 @@ pygame.mixer.set_num_channels(24)
 SOUNDDIR="patterns/snake-data/"
 diesound = pygame.mixer.Sound(SOUNDDIR+"Hero_Death_00.wav")
 eatsound = pygame.mixer.Sound(SOUNDDIR+"frog407.2.wav")
-music = pygame.mixer.Sound(SOUNDDIR+"maggie3.wav")
+music = pygame.mixer.Sound(SOUNDDIR+"maggie3s.wav")
 
 def move(pos,dir):
     #print("pos",pos)
