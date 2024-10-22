@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=100, initial-scale=1">
+    <style>
+      @font-face { font-family: "PressStart2P-Regular"; src: url(PressStart2P-Regular.ttf); }
+      @font-face { font-family: "Bedstead"; src: url(bedstead.otf); }
+      @font-face { font-family: "Bedstead Bold"; src: url(bedstead-bold.otf); }
+* {
+  padding: 0;
+  margin: 0;
+  -moz-user-select: none;
+}
+
+.wrap {
+  margin-left: 20px;
+  margin-top: 20px;
+  border: solid red 1px;
+  display: inline-block;
+  height: 150px;
+  overflow: hidden;
+}
+#udlr { position: absolute; height: 70%; left: 5%; top: 25%; }
+#inout { position: absolute; height: 70%; right: 5%; top: 20%; }
+body,#body2 { position: fixed; width: 100%; height: 100%; font: 32pt Bedstead;}
+      #status {
+        position: absolute;
+left: 20%; top: 5%; width: 60%; height: 15%;
+/*border: 0.2em solid black; border-radius:0.2em;*/
+padding: 0.2em;
+vertical-align: center;
+text-align: center;
+        /*background: #ccc;*/
+}
+      #fs { /*background: white;*/ position: fixed; top:0; left:0;width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <div id=body2>
+    <div id=fs></div>
+<svg id="udlr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1028.01 1028.01"><g id="Layer_1-2"><g id=b4><polygon points="535 210.68 535 231.68 559.05 231.68 566.5 224.23 566.5 218.14 559.05 210.68 535 210.68" stroke="#000" stroke-miterlimit="10"/><path d="M514.01,.71l-238.85,238.85,196.42,196.42,42.43-42.43,42.43,42.43,196.42-196.42L514.01,.71Zm0,259.43l-13.54,13.54h-25.41l-13.54-13.54v-59.95h10.5v55.54l7.45,7.45h16.59l7.46-7.45v-55.54h10.5v59.95Zm49.45-17.95h-28.45v31.5h-10.5v-73.5h38.95l13.54,13.54v14.91l-13.54,13.54Z" stroke="#000" stroke-miterlimit="10"/></g><g id=b5><path d="M556.43,592.04l-42.43,42.43-42.43-42.43h0s-196.42,196.42-196.42,196.42l238.85,238.85,238.85-238.85-196.42-196.42Zm-105.43,217l-13.54,13.54h-38.95v-73.5h38.95l13.54,13.54v46.41Zm63,0l-13.54,13.54h-25.41l-13.54-13.54v-46.41l13.54-13.54h25.41l13.54,13.54v46.41Zm63,0l-13.54,13.54h-4.41l-8.29-8.29-8.29,8.29h-4.41l-13.54-13.54v-59.95h10.5v55.54l5.25,5.25,5.25-5.25v-24.04h10.5v24.04l5.25,5.25,5.25-5.25v-55.54h10.5v59.95Zm52.5,13.54v-21h-7.46l-21-21h-3.04v42h-10.5v-73.5h10.5v21h7.45l21,21h3.04v-42h10.5v73.5h-10.5Z" stroke="#000" stroke-miterlimit="10"/><polygon points="479.46 759.58 472.01 767.04 472.01 804.63 479.46 812.08 496.05 812.08 503.5 804.63 503.5 767.04 496.05 759.58 479.46 759.58" stroke="#000" stroke-miterlimit="10"/><polygon points="409.01 759.58 409.01 812.08 433.05 812.08 440.51 804.63 440.51 767.04 433.05 759.58 409.01 759.58" stroke="#000" stroke-miterlimit="10"/></g><g id=b0><path d="M435.97,471.58l-196.42-196.42L.71,514.01l238.85,238.85,196.42-196.42-42.43-42.43,42.43-42.43h0Zm-275.42,76.55h-52.5v-73.5h10.5v63h42v10.5Zm63-63h-42v21h31.5v10.5h-31.5v21h42v10.5h-52.5v-73.5h52.5v10.5Zm63,0h-42v21h31.5v10.5h-31.5v31.5h-10.5v-73.5h52.5v10.5Zm63,0h-21v63h-10.5v-63h-21v-10.5h52.5v10.5Z" stroke="#000" stroke-miterlimit="10"/></g><g id=b1><path d="M788.46,275.16l-196.42,196.42h0s42.43,42.43,42.43,42.43l-42.43,42.43h0s196.42,196.42,196.42,196.42l238.85-238.85-238.85-238.85Zm-63,227.93l-13.54,13.54h-7.45v3.04l21,21v7.46h-7.45l-24.04-24.04v-7.45h-10.5v31.5h-10.5v-73.5h38.95l13.54,13.54v14.91Zm42-17.95h-10.5v52.5h10.5v10.5h-31.5v-10.5h10.5v-52.5h-10.5v-10.5h31.5v10.5Zm63,10.5h-7.45l-10.5-10.5h-16.59l-7.45,7.45v37.59l7.45,7.45h24.04v-10.5h-10.5v-10.5h21v31.5h-38.95l-13.54-13.54v-46.41l13.54-13.54h25.41l13.54,13.54v7.45Zm63,52.5h-10.5v-31.5h-31.5v31.5h-10.5v-73.5h10.5v31.5h31.5v-31.5h10.5v73.5Zm42-63v63h-10.5v-63h-21v-10.5h52.5v10.5h-21Z" stroke="#000" stroke-miterlimit="10"/><polygon points="683.46 485.13 683.46 506.13 707.5 506.13 714.96 498.68 714.96 492.59 707.5 485.13 683.46 485.13" stroke="#000" stroke-miterlimit="10"/></g><g><rect x="488.83" y="488.83" width="50.35" height="50.35" transform="translate(-212.91 514.01) rotate(-45)"/><path d="M514.01,478.4l35.6,35.6-35.6,35.6-35.6-35.6,35.6-35.6"/></g></g></svg>
+<svg id="inout" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 522.4 1026.2"><g id="Layer_1-2"><g id=b2><polygon points="231.52 250.05 219.79 261.78 219.79 272.33 246.37 298.91 256.91 298.91 268.64 287.18 268.64 276.63 242.06 250.05 231.52 250.05"/><path d="M420.15,0V50.25H51.4V369.25h101.75v101.75H471.15V101.25h51.25V0h-102.25Zm-140.97,291.48l-17.97,17.97h-19.16s-32.82-32.81-32.82-32.81v-19.16l17.97-17.97h19.15s32.82,32.82,32.82,32.82v19.15Zm44.55-44.55l-17.97,17.97h-19.16s-42.39-42.39-42.39-42.39l7.42-7.42,39.27,39.27h10.54s11.73-11.73,11.73-11.73v-10.54l-39.27-39.27,7.42-7.42,42.39,42.39v19.15Zm31.85-31.85l-44.55-44.55-14.85,14.85-7.42-7.42,37.12-37.12,7.42,7.42-14.85,14.85,44.55,44.55-7.42,7.42Z"/></g><path id=b3 d="M369.25,656.95v-101.75H51.25v369.75H0v101.25H102.25v-50.25H471v-319h-101.75Zm-139.32,187.58l-7.42-7.42,7.42-7.42-37.12-37.12-7.42,7.42-7.42-7.42,22.27-22.27,7.43,7.42-7.43,7.42,37.12,37.12,7.42-7.42,7.42,7.42-22.27,22.27Zm59.4-59.4l-14.85-14.85-5.27,5.27h-29.7l-2.15,2.15,29.7,29.7-7.42,7.42-51.97-51.97,7.42-7.42,14.85,14.85,5.27-5.27h29.7l2.15-2.15-29.7-29.7,7.42-7.42,51.97,51.97-7.42,7.42Z"/></g></svg>
+<!--    <div>
+      <button id=b0>Left</button>
+      <button id=b1>Right</button>
+      <button id=b4>Up</button>
+      <button id=b5>Down</button>b1
+      <button id=b3>In</button>
+      <button id=b2>Out</button>
+    </div>-->
+    <div id=status></div>
+    <pre id=log>
+    </pre>
+    </div>
+    </div>
+    <script>board=false;</script>
+    <script src="status.js">
+    </script>
+  </body>
+</html>

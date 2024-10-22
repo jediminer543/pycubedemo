@@ -1,0 +1,103 @@
+<!doctype html><html><head>
+  <style>
+      @font-face { font-family: "PressStart2P-Regular"; src: url(PressStart2P-Regular.ttf); }
+      @font-face { font-family: "Bedstead"; src: url(bedstead.otf); }
+      @font-face { font-family: "Bedstead Bold"; src: url(bedstead-bold.otf); }
+      body { margin:0; padding: 0;font: 20pt Bedstead; }
+    div.border { border-radius: 1em; border: 0.1em solid orange; margin: 10px; }
+    div#mainpage { display: none;background: black; width: 100%; height: 600px; position: fixed;margin:0; padding-top:44px;padding-bottom:44px;color: white; font: Bedstead; color: white; /*flex-direction: column;*/
+display: none; flex-direction: column; justify-content: space-between;		 }
+    p#start { font: 200% sans-serif; text-align: center;}
+/*    #startpage > img { width: 60%; max-height: 80%; display: block;margin: 0 auto; }*/
+    #hisc { /*margin-left: 4em;*/ margin-left:auto;margin-right: auto; /*margin-bottom: 2em;*/ padding: 9px 2em 9px 2em; font-size: 120%; border: 2px dashed grey; border-radius: 1em; display: inline-block; align-self: flex-end; justify-content: center; text-align: center;}
+    #logo { text-align: center; flex-grow: 0; margin-left: 10px;
+	    margin-top:3%; max-height:40%;}
+    #scores,#scores2 { /*padding-top: 6em;*/ color: white; font-size: 120%; /*border-radius: 1em; border: 0.1em solid orange;*/ margin: 10px auto; }
+    #scores td { padding: 0 20px 0 20px; }
+    #hi,#hiname { font-size: 200%; font-weight: bold; vertical-align: middle; font-height:200%;}
+    #log,#log2 { flex-grow: 3; overflow-y: hidden; padding: 0.6em; margin-bottom: 0.5em;
+	   -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%); max-height: 40%; position: absolute; bottom: 0;
+    }
+    #top {  display: flex; flex: 1; flex-direction:row; margin: auto:}
+    #bottom { flex-shrink: 3; align-self: center; }
+    #left { flex:2; display: flex; flex-direction: column;justify-content:space-around;}
+    #right,#right2 { flex:1; display: flex; flex-direction: column; }
+    #inst { font-size: 120%; /*margin-left: 6em;*/ align-self:center;}
+
+    #startpage { background: black; color: white; margin: auto; padding: 0;display: flex; flex-direction: row; justify-content: center; align-content: center;height: 100%; position: fixed;width:100%;}
+      #startpage td { width: 50px; height: 50px; }
+      .dot {
+	  width: 6px; height: 6px; margin: 22px; background: darkgray;
+      }
+      .head,.tail {
+	  width: 30px; height: 30px; margin: 10px; border-radius: 5px;
+      }
+      .head { background: lime; }
+      .tail { background: green; }
+      #loadtab { margin: auto; margin:  auto;  max-width: 400px;max-height: 400px; }
+      .loadtext { text-align:center;margin-top:auto;margin-bottom:auto;margin-left:2em;margin-right:2em;}
+      th { padding-left:0.5em;padding-right:0.5em; }
+    #blackpage { background: black; margin: 0; padding: 0;display: none;height: 100%; position: fixed;width:100%;}
+  </style>
+</head>
+<body>
+  <div id=startpage>
+<!--    <img src="Weebl-Snake.png">
+    <p id=start>
+      Snake starting soon
+      <br>
+      Find a tablet to play!
+  </div>-->
+    <div class=loadtext>
+      <p>SNAKE LOADING...
+      <p>Find a tablet to play!
+    </div>
+    <div id=loadtab>
+    </div>
+    <div class=loadtext>
+      <p>SNAKE LOADING...
+      <p>Find a tablet to play!
+    </div>
+  </div>
+  <div id=blackpage>
+  </div>
+  <div id=mainpage>
+<!--    <img style="position: absolute; top: 3%; right: 3%; width: 15%; height: 15%;" src="Leeds_hackspace_logo.svg">-->
+      <div id="top">
+	<div id=right2>
+	  <table id=scores2>
+	    <tr>
+<!--	      <td style="color: red">RED</td><td>14</td><td>Alive for 23 seconds</td>-->
+	    </tr>
+	  </table>
+	  <div id=log2>
+	  </div>
+	</div>
+	<div id="left">
+	  <!--  <h1>3D Snake!</h1>-->
+	  
+	  <!--<div id=logo><img src=snake3dlogo.svg style="width: 100%;margin-top:10px"></div>-->
+	  <div id=logo><img src=snake3d.trim.png style="width: 90%; height:100%;object-fit:fill"></div>
+	  <div id=inst>
+	      <li>Eat the glowing pills to grow!
+	      <li>Avoid other snakes!
+	      <li>Don't run into yourself!
+	  </div>
+	<div id=hisc></div>
+	</div>
+	<div id=right>
+	  <table id=scores>
+	    <tr>
+<!--	      <td style="color: red">RED</td><td>14</td><td>Alive for 23 seconds</td>-->
+	    </tr>
+	  </table>
+	  <div id=log>
+	  </div>
+	</div>
+      </div>
+      <div id="bottom">
+      </div>
+    <script>board=true;</script>
+    <script src="status.js"></script>
+</body>
+</html>
