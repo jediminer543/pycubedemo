@@ -39,7 +39,9 @@ class Pattern(object):
 
     def tick(self):
         self.cube.clear() # Make sure cubes are cleared or problems in simulator.
-        for (x, y, z), color in self.life.successors():
+        for ((x, y, z), color), just_restarted in self.life.successors():
+            if just_restarted:
+                raise StopIteration
             self.cube.set_pixel((x, y, z), color)
 
 
@@ -64,19 +66,21 @@ class CubeLife(object):
         """Iterator: Returning data structure is for each iteration is a 
         tuple of 2 tuples of 3 ints: ((x, y, z), (r, g, b)) these are constained 
         to the cube size or rgb value limits."""
-        for pos, mute in next(self.generations):
-            yield ((pos, self.color2) if mute else (pos, self.color1))
+        (next_gen, just_restarted) = next(self.generations)
+        for (pos, mute) in next_gen:
+            yield (((pos, self.color2) if mute else (pos, self.color1)), just_restarted)
 
     def __life(self):
         "Iterator: yield whole generations of life forever."
         while True:
             if self.__done():
                 self.__restart()
+                yield (self.state, True) # Just restarted? True
             else:
                 self.state = self.next_gen(self.state, self.size)
                 self.count += 1
                 self.patterns.append(self.state)
-            yield self.state
+                yield (self.state, False) # Just restarted? False
 
     def __restart(self):
         "Set initial values for each new game of life"

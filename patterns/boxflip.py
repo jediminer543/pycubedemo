@@ -7,7 +7,7 @@ import cubehelper
 import random
 
 DT = 1.0/20
-SPEED = 1.0/5.0
+SPEED = 1.0/5.2173913043
 
 class Pattern(object):
     def init(self):

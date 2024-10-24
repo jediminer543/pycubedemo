@@ -55,7 +55,7 @@ class Pattern(object):
         self.color = cubehelper.random_color()
         self.prevColor = cubehelper.random_color()
         
-        return 1.0/15
+        return 1.0/16
 
     def tick(self):
         self.cube.clear()
@@ -71,3 +71,5 @@ class Pattern(object):
         if (math.sin(self.sinwidth*self.iter)+1)/2 < 0.1:
             self.prevColor = self.color
             self.color = cubehelper.random_color()
+
+        raise StopIteration

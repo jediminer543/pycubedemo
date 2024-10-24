@@ -41,7 +41,7 @@ class Pattern(object):
         self.filling_color = 0
         self.corner_index = None
         self.restart()
-        return 0.6 / self.cube.size
+        return 0.652173913 / self.cube.size
 
     def restart(self):
         self.offset = 0

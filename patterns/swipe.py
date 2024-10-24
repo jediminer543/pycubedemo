@@ -9,7 +9,7 @@ class Pattern(object):
         self.phase = 0
         self.offset = -self.cube.size
         self.color = cubehelper.random_color()
-        return 1.0 / self.cube.size
+        return (2.6086956522/2) / self.cube.size
     def tick(self):
         self.offset += 1
         p0 = self.phase

@@ -13,7 +13,7 @@ class Pattern(object):
         self.max_size = (self.cube.size - 1) // 2
         self.color = cubehelper.random_color()
         self.double_buffer = True
-        return 1.0 / self.cube.size
+        return 1.311 / self.cube.size
         
     def tick(self):
         # Draw the cube at its current size, then reduce the size for the next iteration

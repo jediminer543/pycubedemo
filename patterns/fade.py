@@ -10,7 +10,7 @@ class Pattern(object):
         self.level = 0.0
         self.delta = 1.0/16
         self.color = cubehelper.random_color()
-        return 1.0/16
+        return 1.3043478261/16
     def tick(self):
         color = cubehelper.mix_color((0.0,0.0,0.0), self.color, self.level)
         for y in range(0, self.cube.size):
@@ -24,6 +24,6 @@ class Pattern(object):
         if self.level <= 0.0:
             self.delta = -self.delta
             self.level = 0.0
-            self.color = cubehelper.random_color()
+            self.color = cubehelper.random_color(self.color)
             raise StopIteration
 

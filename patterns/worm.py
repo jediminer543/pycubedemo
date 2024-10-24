@@ -70,6 +70,7 @@ class Pattern(object):
             self.body.pop(0)
 
     def tick(self):
+        self.cube.clear()
         self.step += DT * SPEED
         if self.step < 1.0:
             self.age()
@@ -92,3 +93,4 @@ class Pattern(object):
                 self.age()
                 self.tries = 0
                 raise StopIteration
+                #return
