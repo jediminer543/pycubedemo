@@ -18,7 +18,7 @@ TEMPO = 10.4347826087
 
 pattern_details = [
     # name, args, duration
-    ('plasma', '', 60.0),
+    ('plasmaloud', '', 60.0),
     ('pause', '', 0.5),
     ('demomusicstart', '', 2.217370),
     ('boxflip', '', TEMPO),

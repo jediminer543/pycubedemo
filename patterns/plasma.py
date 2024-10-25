@@ -5,11 +5,8 @@
 import random
 import cubehelper
 import math
-import pygame
 
-DT = 1.0/20
-FADE_TIME = 20
-ACTIVE_TIME = 20
+DT = 1.0/30
 
 def color_from_val(val):
     if val < 85:
@@ -29,36 +26,15 @@ def color_from_val(val):
 class Pattern(object):
     def init(self):
         self.offset = 0.0
-        self.fade_distance = 0.0
-        self.timer = 0.0
-        pygame.init()
-        pygame.mixer.init( )
-        pygame.mixer.stop()
-        pygame.mixer.set_num_channels(2)
-        self.pulse = pygame.mixer.Sound('patterns/plasma-data/pulse.wav')
-        self.pulseplayed = False
         return DT
 
     def tick(self):
-        if self.pulseplayed == False:
-            pygame.mixer.Sound.set_volume(self.pulse,0.70)
-            self.pulse.play()
-            self.pulseplayed = True
-        if self.timer > FADE_TIME + ACTIVE_TIME:
-            pygame.mixer.Sound.fadeout(self.pulse, (FADE_TIME*1000) - 500)
-
-        self.timer += DT
         self.offset -= DT / 1.0
         if self.offset < 0:
             self.offset += 1.0
         sz = self.cube.size
         scale = math.pi * 2.0 / float(sz)
         offset = 0.5
-        if self.timer < FADE_TIME:
-            self.fade_distance += DT * 11.0 / FADE_TIME
-        elif self.timer > FADE_TIME + ACTIVE_TIME:
-            self.fade_distance -= DT * 11.0 / FADE_TIME
-
         for y in range(0, sz):
             for z in range(0, sz):
                 for x in range(0, sz):
@@ -67,13 +43,4 @@ class Pattern(object):
                     w = math.cos((z + offset) * scale)
                     e = (u + v + w + 3.0) / 6.0
                     color = self.cube.plasma(self.offset + e)
-                    dist = abs(x - 3.5) + abs(y - 3.5) + abs(z - 3.5)
-                    delta = dist - self.fade_distance
-                    if delta > 0.0:
-                        if delta > 1.0:
-                            color = 0
-                        else:
-                            color = cubehelper.mix_color(color, 0, delta)
                     self.cube.set_pixel((x, y, z), color)
-        if self.timer > FADE_TIME * 2.0 + ACTIVE_TIME:
-            raise StopIteration

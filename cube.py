@@ -137,6 +137,8 @@ ap.add_argument('-N', '--netport', type=str,
         help="Network port for patterns")
 ap.add_argument('-r', '--rotation', type=str,
         help="Rotation to apply to the cube in the format either just number of 90 degree rotations around z")
+ap.add_argument('-F', '--flip', type=str,
+        help="Flip a given axis of the cube, provide a string containing the axes to flip, i.e. xz")
 args = ap.parse_args()
 
 debug_frames = args.frames
@@ -161,6 +163,11 @@ if args.rotation is not None:
         c.set_pixel = lambda xyz, rgb:  set_pixel_old((c.size-1-xyz[0], c.size-1-xyz[1], xyz[2]), rgb)
     if (int(args.rotation[0]) % 4 == 3):
         c.set_pixel = lambda xyz, rgb:  set_pixel_old((xyz[1], c.size-1-xyz[0], xyz[2]), rgb)
+
+if args.flip is not None:
+   set_pixel_old = c.set_pixel
+   print("flip x {} y {} z {} ".format("x" in args.flip, "y" in args.flip, "z" in args.flip))
+   c.set_pixel = lambda xyz, rgb: set_pixel_old((c.size-1-xyz[0] if "x" in args.flip else xyz[0], c.size-1-xyz[1] if "y" in args.flip else xyz[1], c.size-1-xyz[2] if "z" in args.flip else xyz[2]), rgb)
 
 if c.color:
     c.plasma = cubehelper.color_plasma

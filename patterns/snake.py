@@ -45,7 +45,7 @@ names = [
 grid = [ None ] * 512
 nplayers = 5
 players = [ None ] * nplayers
-startuptime = 30*FPS # frames
+startuptime = 0.1*FPS # frames
 gamelength = 728.24 # seconds
 #gamelength = 17 # seconds
 starttime = None
@@ -198,7 +198,7 @@ def serve_static():
 
 thread = threading.Thread(target = serve_static)
 thread.daemon = True
-thread.start()
+#thread.start()
 
 
 pygame.init()
@@ -484,12 +484,9 @@ class Pattern(object):
         self.double_buffer = True
         #p = Player()
         #players.append(p)
-        t = Target()
-        targets.append(t)
-        t = Target()
-        targets.append(t)
-        t = Target()
-        targets.append(t)
+        for i in range(9):
+          t = Target()
+          targets.append(t)
         self.frame = 0
         return 1.0/FPS
     def tick(self):
@@ -500,19 +497,19 @@ class Pattern(object):
         if self.frame < startuptime:
             return
         elif self.frame == startuptime:
-            music.set_volume(0.15)
-            music.play()
+            #music.set_volume(0.15)
+            #music.play()
             starttime = time.time()
             print ("starttime=",starttime)
 
-        if time.time() > starttime + gamelength + 10:
-            exit(0)
-        elif time.time() > starttime + gamelength:
-            if not gameended:
-                broadcast({'type':'exiting'})
-                gameended = True
-            print("game ended")
-            return
+#        if time.time() > starttime + gamelength + 10:
+#            exit(0)
+#        elif time.time() > starttime + gamelength:
+#            if not gameended:
+#                broadcast({'type':'exiting'})
+#                gameended = True
+#            print("game ended")
+#            return
 
         for p in players:
             if p:

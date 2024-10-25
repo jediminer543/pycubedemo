@@ -54,7 +54,7 @@ class Pattern(object):
         self.sinwidth = 0.3
         self.color = cubehelper.random_color()
         self.prevColor = cubehelper.random_color()
-        
+        self.double_buffer = True
         return 1.0/16
 
     def tick(self):
