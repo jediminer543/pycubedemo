@@ -22,11 +22,12 @@ class Pattern(object):
         pygame.mixer.set_num_channels(1)
         self.isaac = pygame.mixer.Sound('patterns/demo-data/isaac.wav')
         self.isaacplayed = False
-        self.double_buffer = True
+        #self.double_buffer = True
         self.timer = 0.0
         return DT
 
     def tick(self):
+        self.cube.clear()
         if self.isaacplayed == False and self.timer > STARTDELAY:
             pygame.mixer.stop()
             self.isaac.play()
