@@ -274,6 +274,8 @@ class Pattern(object):
         old_stars = self.stars
         self.stars = []
         for star in old_stars:
+            if (star.x < 0 or star.x > 7 or star.y < 0 or star.y > 7):
+                continue
             self.cube.set_pixel((star.x, star.y, 7), (star.brightness, star.brightness, star.tintval))
             if star.tick():
                 self.stars.append(star)
