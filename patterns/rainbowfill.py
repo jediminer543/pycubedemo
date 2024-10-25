@@ -124,6 +124,8 @@ class Pattern(object):
 		
 	def tick(self):
 		if self.state == self.MOVE:
+			if self.anim_counter == 0:
+				self.move_sound.play()
 			# Move the origin pixel 8 times during the animation
 			if self.anim_counter%(MOVE_ANIM_LENGTH/8.0) < 1.0:
 				# Change the direction the origin pixel 4 times during the end animation
@@ -182,5 +184,5 @@ class Pattern(object):
 			
 			if self.anim_counter == FADE_ANIM_LENGTH - 1:
 				self.state = self.MOVE
-				self.move_sound.play()
 				self.anim_counter = 0
+				raise StopIteration
