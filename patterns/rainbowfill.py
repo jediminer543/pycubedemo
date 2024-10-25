@@ -6,9 +6,9 @@ import random
 import numpy
 import pygame
 
-DT = 1.0/32
-MOVE_ANIM_LENGTH = 128 # must be a multiple of 8
-FADE_ANIM_LENGTH = 128
+DT = 1.0/64
+MOVE_ANIM_LENGTH = 256 # must be a multiple of 8
+FADE_ANIM_LENGTH = 32
 
 # Directions:
 # x+ = 0
