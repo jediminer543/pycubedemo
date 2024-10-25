@@ -20,7 +20,7 @@ class Pattern(object):
         pygame.init()
         pygame.mixer.init( )
         pygame.mixer.set_num_channels(1)
-        self.isaac = pygame.mixer.Sound('patterns/isaac.wav')
+        self.isaac = pygame.mixer.Sound('patterns/demo-data/isaac.wav')
         self.isaacplayed = False
         self.double_buffer = True
         self.timer = 0.0
