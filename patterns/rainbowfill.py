@@ -24,7 +24,7 @@ class Pattern(object):
 		self.FILL = 1
 		self.FADE = 2
 		
-		self.double_buffer = True
+		#self.double_buffer = True
 		
 		
 		pygame.init()
