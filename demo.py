@@ -32,7 +32,7 @@ pattern_details = [
     ('sinewave', '', 2*TEMPO),
     ('fade','',TEMPO + 4.0),
     ('pause','', 6.0),
-    ('rainbowfill', '', 60.0),
+    ('rainbowfill', '', 30.0),
     # ('pause','', 6.0),
     # ('life', '', 30.0),
     ('pause','', 6.0),
