@@ -12,6 +12,7 @@ import signal
 import cubehelper
 import random
 import logging
+import importlib
 
 def load_patterns(cube, match):
     patterns = {}
@@ -32,8 +33,9 @@ def load_patterns(cube, match):
             continue
         print("Loading pattern module '%s'" % name)
         try:
-            loader = finder.find_module(name)
-            mod = loader.load_module(name)
+            spec = finder.find_spec(name)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
             constructor = mod.Pattern
         except Exception as e:
             print(e)

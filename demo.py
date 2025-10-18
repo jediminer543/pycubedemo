@@ -11,6 +11,7 @@ import time
 import signal
 import cubehelper
 import random
+import importlib
 
 # pbrook todo: check transitions as doesn't always match up, make lightning in weather stay longer, stars more yellow, wave is running 50fps
 
@@ -49,8 +50,11 @@ def load_patterns(cube, details):
             continue
         print("Loading pattern module '%s'" % name)
         try:
-            loader = finder.find_module(name)
-            mod = loader.load_module(name)
+            #loader = finder.find_module(name)
+            #mod = loader.load_module(name)
+            spec = finder.find_spec(name)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
             patterns[name] = mod.Pattern
         except Exception as e:
             print(e)

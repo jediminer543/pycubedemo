@@ -24,7 +24,8 @@ def FileWriter(name):
 
 def SerialWriter(port):
     import serial
-    ser = serial.Serial(port, 115200, timeout=2)
+    # default 115200
+    ser = serial.Serial(port, 512000, timeout=2)
     ser.read(4)
     return ser
 
