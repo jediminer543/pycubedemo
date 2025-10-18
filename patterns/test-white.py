@@ -6,9 +6,6 @@ import cubehelper
 
 class Pattern(object):
     def init(self):
-        self.level = 0.0
-        self.delta = 1.0/16
-        self.color = cubehelper.random_color()
         self.double_buffer = True
         return 1.0/25
     def tick(self):

@@ -31,7 +31,7 @@ class Pattern(object):
         for x in range(0, self.cube.size):
             for y in range(0, self.cube.size):
                 self.unused.append(Drop(self.cube, x, y))
-        return 0.1
+        return 1.0/10
     def spawn(self):
         d = self.unused.pop(random.randrange(len(self.unused)))
         d.reset()

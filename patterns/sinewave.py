@@ -72,4 +72,4 @@ class Pattern(object):
             self.prevColor = self.color
             self.color = cubehelper.random_color()
 
-        raise StopIteration
+        #raise StopIteration
