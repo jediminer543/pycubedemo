@@ -5,6 +5,7 @@
 import numpy
 import cubehelper
 import socket
+import telnetlib3
 
 BUFFER_SIZE = 128
 
@@ -18,6 +19,16 @@ class TCPWriter(object):
         #self.sock.recv(4)
     def write(self, b):
         self.sock.sendall(b)
+
+class TelnetWriter(object):
+    def __init__(self, addr):
+        (host, port) = addr.split(':')
+        port = int(port)
+        if host == "":
+            host = "localhost"
+        self.term = telnetlib3.Telnet(host, int(port))
+    def write(self, b):
+        self.term.write(b)
 
 def FileWriter(name):
     return open(name, "wb")
@@ -70,7 +81,7 @@ def maxicube_map(xyz):
 
 class Cube(object):
     def __init__(self, args):
-        writers = {'tcp':TCPWriter, 'file':FileWriter, 'serial':SerialWriter, 'spi':SPIWriter}
+        writers = {'tcp':TCPWriter, 'file':FileWriter, 'serial':SerialWriter, 'spi':SPIWriter, "telnet":TelnetWriter}
         if ':' in args.port:
             (proto, port) = args.port.split(':', 1)
         else:
